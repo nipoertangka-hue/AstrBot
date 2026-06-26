@@ -32,3 +32,11 @@ RUN python -m pip install uv \
 EXPOSE 6185
 
 CMD ["python", "main.py"]
+
+# ===== GitHub 永久資料同步 =====
+RUN apt-get update && apt-get install -y git curl
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
